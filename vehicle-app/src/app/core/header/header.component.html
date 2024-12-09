@@ -1,14 +1,28 @@
-<header>
-    <div class="">
+<header class="site-header">
+    <div>
         <div class="header-title">
             <h2>CarFlip</h2>
         </div>
-        <div>
+        <div class="header-nav">            
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/themes">Makes</a>
+                </li>
+                <li>
+                    <a routerLink="/add-theme">All cars</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="header-auth">
             <ul>
                 <!-- @if(isLoggedIn){ -->
                 <li>
                     <!-- <a routerLink="/profile">{{firstName}}'s profile</a> -->
-                     <a href="#">Chris</a>
+                    <a href="#">Chris</a>
                 </li>
                 <li>
                     <a>Logout</a>
@@ -24,17 +38,7 @@
             </ul>
         </div>
     </div>
-    <nav>
-        <ul>
-            <li>
-                <a routerLink="/home">Home</a>
-            </li>
-            <li>
-                <a routerLink="/themes">Themes</a>
-            </li>
-            <li>
-                <a routerLink="/add-theme">New Theme</a>
-            </li>
-        </ul>
-    </nav>
+
+    </div>
+
 </header>

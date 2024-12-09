@@ -1,3 +1,42 @@
 .header-title{
-    
+    width: 100%;
+    padding-left: 2em;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
+
+.site-header{
+    border: 2px solid black;
+    padding: 1em;
+}
+
+.header-nav{
+    display: flex;
+    justify-content: row;
+}
+
+.header-auth{
+    flex-grow: 1;
+}
+
+.nav-bar{
+    flex-grow: 1;
+}
+.nav-bar ul, .header-auth ul{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.header-auth ul{
+    justify-content: right;
+    padding-right: 3em;
+}
+
+.nav-bar ul{
+    padding-left: 3em;
+}
+.header-auth ul li,
+.nav-bar ul li{
+    list-style: none;
 }
