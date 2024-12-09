@@ -1,0 +1,40 @@
+<header>
+    <div class="">
+        <div class="header-title">
+            <h2>CarFlip</h2>
+        </div>
+        <div>
+            <ul>
+                <!-- @if(isLoggedIn){ -->
+                <li>
+                    <!-- <a routerLink="/profile">{{firstName}}'s profile</a> -->
+                     <a href="#">Chris</a>
+                </li>
+                <li>
+                    <a>Logout</a>
+                </li>
+                <!-- }@else { -->
+                <li>
+                    <a routerLink="/login">Login</a>
+                </li>
+                <li>
+                    <a routerLink="/register">Register</a>
+                </li>
+                <!-- } -->
+            </ul>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a routerLink="/home">Home</a>
+            </li>
+            <li>
+                <a routerLink="/themes">Themes</a>
+            </li>
+            <li>
+                <a routerLink="/add-theme">New Theme</a>
+            </li>
+        </ul>
+    </nav>
+</header>
