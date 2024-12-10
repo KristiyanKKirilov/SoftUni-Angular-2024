@@ -43,8 +43,15 @@
     list-style: none;
 }
 
-.header-auth ul li:hover,
-.nav-bar ul li:hover{
+.header-auth ul li a,
+.nav-bar ul li a{
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.header-auth ul li a:hover,
+.nav-bar ul li a:hover{
     color: #a2a8d3;
     cursor: pointer;
 }
