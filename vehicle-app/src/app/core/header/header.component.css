@@ -8,7 +8,8 @@
 .site-header{
     border: 2px solid black;
     padding: 1em;
-    background-color: lightblue;
+    background-color: #234465;
+    color: #fff
 }
 
 .header-nav{
@@ -40,4 +41,10 @@
 .header-auth ul li,
 .nav-bar ul li{
     list-style: none;
+}
+
+.header-auth ul li:hover,
+.nav-bar ul li:hover{
+    color: #a2a8d3;
+    cursor: pointer;
 }
