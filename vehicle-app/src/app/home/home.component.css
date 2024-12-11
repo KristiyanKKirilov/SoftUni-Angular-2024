@@ -67,6 +67,12 @@ ul li{
 .vehicle-card .info{
   margin: 10px;
 }
+
+.vehicle-card .info .first-info{
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
 .vehicle-card .ctas{
   margin: 10px 0;
 }
@@ -76,6 +82,8 @@ ul li{
 .thumb-gallery img{
   position: absolute; 
   width: 240px;
+  height: 150px;
+  object-fit: cover;
 }
 .thumb-gallery img.first{
   opacity: 1;
@@ -122,7 +130,7 @@ ul li{
 }
 .specs .spec{
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 30px;
 }
 .specs span{
   font-family: "Helvetica", Arial, sans-serif;
@@ -159,8 +167,9 @@ ul li{
 .primary{
   background-color: #1383b3;
   color: #fff;
-  margin-right: 10px;
   line-height: 30px;
+  display: block;
+  margin: 0 auto;
 }
 .secondary{
   background-color: #fff;
