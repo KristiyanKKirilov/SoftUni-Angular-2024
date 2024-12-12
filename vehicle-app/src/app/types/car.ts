@@ -6,6 +6,7 @@ export interface Car{
         year: string,
         city: string,
         kilometers: number,
+        engine: string,
         color: string,
         gearbox: string,
         horsepowers: number,

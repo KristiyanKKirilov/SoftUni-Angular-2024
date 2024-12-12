@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Car } from '../types/car';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getCarEntries(): Observable<Car[]>{
-    return this.http.get<Car[]>('http://localhost:3000/cars');
+    return this.http.get<{cars: Car[]}>('http://localhost:3000/cars')
+    .pipe(map(response => response.cars));
   }
 }
