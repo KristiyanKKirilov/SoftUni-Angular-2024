@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarService } from '../car.service';
 
 @Component({
   selector: 'app-all-cars',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './all-cars.component.css'
 })
 export class AllCarsComponent {
+  
+  constructor(private carService: CarService){}
 
 }
