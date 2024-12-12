@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-carEntries = [
+cars = [
     {
         _id: {
             $oid: "6759bee56749216e15266f40"
@@ -65,9 +65,17 @@ carEntries = [
         },
         __v: 0
     }
-]
-app.use('/car-entries', (req, res, next) => {
-    res.json({'carEntries': carEntries}); 
+];
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+})
+
+app.use('/cars', (req, res, next) => {
+    res.json({'cars': cars}); 
 })
 
 module.exports = app;

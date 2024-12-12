@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Car } from '../types/car';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getCarEntries(){
-    this.http.get('http://localhost:3000/car-entries');
+  getCarEntries(): Observable<Car[]>{
+    return this.http.get<Car[]>('http://localhost:3000/cars');
   }
 }
