@@ -10,8 +10,11 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  getCarEntries(): Observable<Car[]>{
+  getAllCars(): Observable<Car[]>{
     return this.http.get<{cars: Car[]}>('http://localhost:3000/cars')
     .pipe(map(response => response.cars));
   }
+
+
+
 }

@@ -1,47 +1,97 @@
 <div class="container">
     <div class="new-car">
         <h2>New car post</h2>
-        <form>
+        <form class="add-form" #form="ngForm" (ngSubmit)="addCar(form)">
             <div class="fields">
                 <div class="field new-car-brand">
                     <label for="brand">Brand</label>
-                    <input type="text" id="brand" name="brand">
+                    <input 
+                    type="text" 
+                    id="brand" 
+                    name="brand"
+                    ngModel
+                    #brand="ngModel">
                 </div>
                 <div class="field new-car-model">
                     <label for="model">Model</label>
-                    <input type="text" id="model" name="model">
+                    <input 
+                    type="text" 
+                    id="model" 
+                    name="model"
+                    ngModel 
+                    #model="ngModel">
                 </div>
                 <div class="field new-car-image">
                     <label for="image">ImageURL</label>
-                    <input type="text" id="image" name="image">
+                    <input 
+                    type="text" 
+                    id="image" 
+                    name="image"
+                    ngModel
+                    #imageUrl="ngModel">
                 </div>
                 <div class="field new-car-price">
-                    <label for="model">Price</label>
-                    <input type="text" id="price" name="price">
+                    <label for="price">Price</label>
+                    <input 
+                    type="text" 
+                    id="price" 
+                    name="price"
+                    ngModel
+                    #price="ngModel">
                 </div>
                 <div class="field new-car-year">
                     <label for="year">Year</label>
-                    <input type="text" id="year" name="year">
+                    <input 
+                    type="text" 
+                    id="year" 
+                    name="year"
+                    ngModel
+                    #year="ngModel">
                 </div>
                 <div class="field new-car-city">
                     <label for="city">City</label>
-                    <input type="text" id="city" name="city">
+                    <input 
+                    type="text" 
+                    id="city" 
+                    name="city"
+                    ngModel
+                    #city="ngModel">
                 </div>
                 <div class="field new-car-kilometers">
                     <label for="kilometers">Kilometers</label>
-                    <input type="text" id="kilometers" name="kilometers">
+                    <input 
+                    type="text" 
+                    id="kilometers" 
+                    name="kilometers"
+                    ngModel
+                    #kilometers="ngModel">
                 </div> 
                 <div class="field new-car-gearbox">
                     <label for="gearbox">Gearbox</label>
-                    <input type="text" id="gearbox" name="gearbox">
+                    <input 
+                    type="text" 
+                    id="gearbox" 
+                    name="gearbox"
+                    ngModel
+                    #gearbox="ngModel">
                 </div>       
                 <div class="field new-car-color">
                     <label for="color">Color</label>
-                    <input type="text" id="color" name="color">
+                    <input 
+                    type="text" 
+                    id="color" 
+                    name="color"
+                    ngModel
+                    #color="ngModel">
                 </div>      
                 <div class="field new-car-doors">
                     <label for="doors">Doors</label>
-                    <input type="text" id="doors" name="doors">
+                    <input 
+                    type="text" 
+                    id="doors" 
+                    name="doors"
+                    ngModel
+                    #doors="ngModel">
                 </div>               
             </div>
             <button>Submit</button>
