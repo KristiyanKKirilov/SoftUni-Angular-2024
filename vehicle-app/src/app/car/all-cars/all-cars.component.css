@@ -25,6 +25,7 @@ ul li{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .vehicle-card{
   position: relative;

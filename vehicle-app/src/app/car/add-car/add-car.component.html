@@ -22,13 +22,22 @@
                     #model="ngModel">
                 </div>
                 <div class="field new-car-image">
-                    <label for="image">ImageURL</label>
+                    <label for="firstImage">ImageURL 1</label>
                     <input 
                     type="text" 
-                    id="image" 
-                    name="image"
+                    id="firstImage" 
+                    name="firstImage"
                     ngModel
-                    #imageUrl="ngModel">
+                    #firstImageUrl="ngModel">
+                </div>
+                <div class="field new-car-image">
+                    <label for="secondImage">ImageURL 2</label>
+                    <input 
+                    type="text" 
+                    id="secondImage" 
+                    name="secondImage"
+                    ngModel
+                    #secondImageUrl="ngModel">
                 </div>
                 <div class="field new-car-price">
                     <label for="price">Price</label>
@@ -101,6 +110,15 @@
                     name="horsepowers"
                     ngModel
                     #horsepowers="ngModel">
+                </div>    
+                <div class="field new-car-engine">
+                    <label for="engine">Engine</label>
+                    <input 
+                    type="text" 
+                    id="engine" 
+                    name="engine"
+                    ngModel
+                    #engine="ngModel">
                 </div>               
             </div>
             <button>Submit</button>

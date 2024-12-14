@@ -18,36 +18,42 @@ export class CarService {
   createCar( 
     brand: string, 
     model: string, 
-    imageUrl: string,
     price: number,
     year: string,
     city: string,
     kilometers: number,
-    gearbox: string,
+    engine:string,
     color: string,
-    doors: number,
+    gearbox: string,
     horsepowers: number,
+    doors: number,
+    firstImageUrl: string,
+    secondImageUrl: string,
   ):Observable<Car>{
     const userId = "5fa64a072183ce1728ff3719";
     const [createdAt,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
     const images = [];
-    images.push(imageUrl);
+    console.log(firstImageUrl);
+    console.log(secondImageUrl);
+    images.push(firstImageUrl, secondImageUrl);
     const payload = {
       brand, 
       model, 
-      images, 
-      price, 
+      price,  
       year,
       city,
       kilometers, 
-      gearbox, 
+      engine,
       color, 
-      doors, 
+      gearbox, 
       horsepowers,
+      doors, 
+      images, 
       userId, 
       createdAt,
       updatedAt,
     };
+    console.log(payload);
     return this.http.post<Car>('http://localhost:3000/add-car', payload);
   }
 

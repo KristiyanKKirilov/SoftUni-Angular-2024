@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-cars = [
+let cars = [
     {
         _id: "6759bee56749216e15266f40",
         brand: "BMW",
@@ -48,14 +48,22 @@ cars = [
         updatedAt: "2020-11-07T08:33:44.801Z",
         __v: 0
     }
-    
 ];
 
+// Add CORS headers middleware first
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+});
+
+// Middleware to parse JSON requests
 app.use(bodyParser.json());
 
+// POST route to add a car
 app.post('/add-car', (req, res) => {
     cars.push({
-        _id: req.body._id,
         brand: req.body.brand,
         model: req.body.model,
         price: req.body.price,
@@ -71,7 +79,6 @@ app.post('/add-car', (req, res) => {
         userId: req.body.userId,
         created_at: req.body.created_at,
         updatedAt: req.body.updatedAt,
-        __v: 0
     });
 
     res.status(200).json({
@@ -79,15 +86,9 @@ app.post('/add-car', (req, res) => {
     });
 });
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
-})
-
-app.get('/cars', (req, res, next) => {
-    res.json({'cars': cars}); 
-})
+// GET route to fetch all cars
+app.get('/cars', (req, res) => {
+    res.json({ cars });
+});
 
 module.exports = app;

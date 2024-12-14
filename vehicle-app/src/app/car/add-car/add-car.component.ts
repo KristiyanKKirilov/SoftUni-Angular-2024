@@ -21,7 +21,8 @@ export class AddCarComponent {
     const {
       brand,
       model,
-      imageUrl,
+      firstImage,
+      secondImage,
       price,
       year,
       city,
@@ -29,21 +30,26 @@ export class AddCarComponent {
       gearbox,
       color,
       doors,
-      horsepowers } = form.value;
+      horsepowers,
+      engine 
+    } = form.value;
 
       console.log(form.value);
     this.carService.createCar(
       brand,
       model,
-      imageUrl,
       price,
       year,
       city,
       kilometers,
-      gearbox,
+      engine,
       color,
+      gearbox,
+      horsepowers,
       doors,
-      horsepowers).subscribe(() => {
+      firstImage,
+      secondImage
+    ).subscribe(() => {
         this.router.navigate(['/cars']);
       });
   }
