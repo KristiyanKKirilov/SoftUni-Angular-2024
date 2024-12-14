@@ -40,6 +40,7 @@
 .header-auth ul li,
 .nav-bar ul li{
     list-style: none;
+    padding: 0.2em;
 }
 
 .header-auth ul li a,
@@ -54,3 +55,19 @@
     color: #a2a8d3;
     cursor: pointer;
 }
+
+.sell{
+    background-color: #1383b3;
+    border-radius: 10px;
+}
+
+.sell:hover{
+    cursor: pointer;
+    transform: scale(1.05); 
+
+}
+
+.nav-bar ul li #sellText:hover{
+    color: #fff;
+}
+

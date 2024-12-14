@@ -69,6 +69,10 @@ button.ghost {
     border-color: #FFFFFF;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 form {
     background-color: #FFFFFF;
     display: flex;
