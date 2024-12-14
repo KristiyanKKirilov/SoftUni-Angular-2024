@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -47,7 +48,36 @@ cars = [
         updatedAt: "2020-11-07T08:33:44.801Z",
         __v: 0
     }
+    
 ];
+
+app.use(bodyParser.json());
+
+app.post('/add-car', (req, res) => {
+    cars.push({
+        _id: req.body._id,
+        brand: req.body.brand,
+        model: req.body.model,
+        price: req.body.price,
+        year: req.body.year,
+        city: req.body.city,
+        kilometers: req.body.kilometers,
+        engine: req.body.engine,
+        color: req.body.color,
+        gearbox: req.body.gearbox,
+        horsepowers: req.body.horsepowers,
+        doors: req.body.doors,
+        images: req.body.images,
+        userId: req.body.userId,
+        created_at: req.body.created_at,
+        updatedAt: req.body.updatedAt,
+        __v: 0
+    });
+
+    res.status(200).json({
+        message: 'Car post submitted'
+    });
+});
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -56,7 +86,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/cars', (req, res, next) => {
+app.get('/cars', (req, res, next) => {
     res.json({'cars': cars}); 
 })
 

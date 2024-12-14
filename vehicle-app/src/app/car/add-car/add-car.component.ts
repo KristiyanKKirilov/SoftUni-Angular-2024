@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { CarService } from '../car.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-car',
@@ -9,22 +11,40 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './add-car.component.css'
 })
 export class AddCarComponent {
+
+  constructor(private carService: CarService, private router: Router) { }
+
   addCar(form: NgForm): void {
     if (form.invalid) {
       return;
     }
     const {
-      brand, 
-      model, 
-      imageUrl, 
-      price, 
-      year, 
-      city, 
-      kilometers, 
-      gearbox, 
-      color, 
-      doors } = form.value;
+      brand,
+      model,
+      imageUrl,
+      price,
+      year,
+      city,
+      kilometers,
+      gearbox,
+      color,
+      doors,
+      horsepowers } = form.value;
 
-
+      console.log(form.value);
+    this.carService.createCar(
+      brand,
+      model,
+      imageUrl,
+      price,
+      year,
+      city,
+      kilometers,
+      gearbox,
+      color,
+      doors,
+      horsepowers).subscribe(() => {
+        this.router.navigate(['/cars']);
+      });
   }
 }
