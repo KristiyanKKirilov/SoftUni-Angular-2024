@@ -16,10 +16,10 @@
                 <p>Color: {{car.color}}</p>
                 <p>Doors: {{car.doors}}</p>
             </aside>
-            <span><p class="car-owner-phone">+359 888 888</p></span>
+            <span><p class="car-owner-phone">{{car.user.phoneNumber}}</p></span>
         </div>
         <div class="user-details">
-            <p class="center">AutoGroup posted on 7 December</p>
+            <p class="center">{{car.user.username}} posted on {{car.created_at}}</p>
             <hr>           
         </div>
     </div>
