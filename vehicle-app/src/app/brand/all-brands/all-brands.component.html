@@ -4,7 +4,7 @@
         @if(!isLoading){
 
         @for (brand of brands; track $index) {
-            <div class="brand-card">
+            <div class="brand-card" [routerLink]="brand.id.toString()">
                 <figure>
                     <img [src]="brand.image" [alt]="brand.name">
                     <figcaption>{{brand.name}}</figcaption>
@@ -14,60 +14,6 @@
     }@else {
         <p>Loading...</p>
     }
-       
-        <!-- <div class="brand-card">
-            <figure>
-                <img src="https://awards.brandingforum.org/wp-content/uploads/2016/11/BMW-logo.jpg">
-                <figcaption>BMW</figcaption>
-            </figure>
-        </div>
-            <div class="brand-card">
-                <figure>
-                    <img src="https://blog.logomaster.ai/hs-fs/hubfs/chevrolet-logo-2013.jpg?width=672&height=454&name=chevrolet-logo-2013.jpg" alt="Mountains">
-                    <figcaption>Chevrolet</figcaption>
-                </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://media.dacia.com/wp-content/uploads/2024/01/7a772800e6cac7d38f38a87b705d52b6.jpg" alt="Mountains">
-                <figcaption>Dacia</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXLdzohuVaUik2pXDoa9_8_wpUipMdAUcwA&s" alt="Mountains">
-                <figcaption>Huyndai</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-in-colors/660/kia-logo-new-512.png" alt="Mountains">
-                <figcaption>Kia</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://images.seeklogo.com/logo-png/9/2/mercedes-benz-logo-png_seeklogo-91081.png?v=638687207070000000" alt="Mountains">
-                <figcaption>Mercedes</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrb9OceAW51iWudPS79wsCg3HYofT6A2kc2Pkb48fhjUqJ1N5PkPr8DkkYu6pyiZbSHtU&usqp=CAU" alt="Mountains">
-                <figcaption>Peugeout</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://cdn.skoda-storyboard.com/2020/11/SKODA-3D-Standard-Logo_sRGB-e1478246875778.png" alt="Mountains">
-                <figcaption>Skoda</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
-            <figure>
-                <img src="https://upload.wikimedia.org/wikinews/en/d/d3/Volkswagen_logo.png" alt="Mountains">
-                <figcaption>VW</figcaption>
-            </figure>
-        </div>                         -->
+    
     </div>
 </div>

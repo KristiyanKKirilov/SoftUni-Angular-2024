@@ -60,8 +60,7 @@ app.get('/cars', (req, res) => {
 
 app.get('/brands', (req, res) => {
     res.json({brands});
-})
-
+});
 
 app.get('/users', (req, res) => {
     const enrichedUsers = users.map(user => {
@@ -86,5 +85,24 @@ app.get('/cars/:id', (req, res) => {
         user: user ? { _id: user._id, username: user.username, phoneNumber: user.phoneNumber } : null
     });
 });
+
+app.get('/brands/:id', (req, res) => {
+    const brandId = parseInt(req.params.id, 10); // Parse brand id as an integer
+    const brand = brands.find(brand => brand.id === brandId); // Find the brand by id
+
+    if (!brand) {
+        return res.status(404).json({ message: 'Brand not found' });
+    }
+
+    // Filter cars that match the brand name
+    const brandCars = cars.filter(car => car.brand === brand.name);
+
+    res.json({
+        brand: brand, // Return brand information
+        cars: brandCars, // Return cars associated with the brand
+    });
+});
+
+
 
 module.exports = app;

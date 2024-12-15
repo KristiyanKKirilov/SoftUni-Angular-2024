@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BrandService } from '../brand.service';
 import { Brand } from '../../types/brand';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-brands',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './all-brands.component.html',
   styleUrl: './all-brands.component.css'
 })
