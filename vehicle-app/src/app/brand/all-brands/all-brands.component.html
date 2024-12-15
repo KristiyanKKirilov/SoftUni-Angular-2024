@@ -1,13 +1,21 @@
 <div class="container">
     <h2 class="container-title">All brands</h2>
     <div class="wrapper">
-        <div class="brand-card">
-            <figure>
-                <img src="https://uploads.audi-mediacenter.com/system/production/media/1282/images/bde751ee18fe149036c6b47d7595f6784f8901f8/AL090142_web_2880.jpg?1698171883" alt="Mountains">
-                <figcaption>Audi</figcaption>
-            </figure>
-        </div>
-        <div class="brand-card">
+        @if(!isLoading){
+
+        @for (brand of brands; track $index) {
+            <div class="brand-card">
+                <figure>
+                    <img [src]="brand.image" [alt]="brand.name">
+                    <figcaption>{{brand.name}}</figcaption>
+                </figure>
+            </div>
+        }
+    }@else {
+        <p>Loading...</p>
+    }
+       
+        <!-- <div class="brand-card">
             <figure>
                 <img src="https://awards.brandingforum.org/wp-content/uploads/2016/11/BMW-logo.jpg">
                 <figcaption>BMW</figcaption>
@@ -60,6 +68,6 @@
                 <img src="https://upload.wikimedia.org/wikinews/en/d/d3/Volkswagen_logo.png" alt="Mountains">
                 <figcaption>VW</figcaption>
             </figure>
-        </div>                        
+        </div>                         -->
     </div>
 </div>

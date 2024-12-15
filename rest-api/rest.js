@@ -1,5 +1,6 @@
 const users = require('./models/users.js');
 const cars = require('./models/cars.js');
+const brands = require('./models/brands.js');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -56,6 +57,10 @@ app.get('/cars', (req, res) => {
     });
     res.json({ cars: enrichedCars });
 });
+
+app.get('/brands', (req, res) => {
+    res.json({brands});
+})
 
 
 app.get('/users', (req, res) => {
