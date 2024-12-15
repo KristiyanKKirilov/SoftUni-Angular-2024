@@ -1,6 +1,8 @@
 <div class="container">
     <h2 class="container-title">All cars</h2>
     <div class="wrapper">
+        @if(!isLoading){
+
         @for (car of cars; track $index) {
             <div class="vehicle-card">
                 <div class="details">
@@ -52,6 +54,9 @@
                 </div>
             </div>
         }                      
+    }@else {
+        <app-loader/>
+    }
 
     </div>    
 </div>

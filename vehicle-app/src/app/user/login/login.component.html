@@ -1,6 +1,18 @@
-<form action="#">
+<form [formGroup]="form" (ngSubmit)="login()">
 	<h1>Sign in</h1>
-	<input type="email" placeholder="Email" />
-	<input type="password" placeholder="Password" />
-	<button>Sign In</button>
+	<input 
+	type="email" 
+	name="email"
+	id="email"
+	placeholder="Email"
+	formControlName="email" />
+	<input 
+	type="password"
+	name="password"
+	id="password" 
+	placeholder="Password"
+	formControlName="password" />
+	<button 
+	[disabled]="form.invalid"
+	[style]="{opacity: form.invalid ? 0.4 : 1}">Sign In</button>
 </form>

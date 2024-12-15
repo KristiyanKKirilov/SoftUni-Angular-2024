@@ -8,5 +8,4 @@ export interface User{
     username: string;
     cars: Car[];
     created_at: string;
-    updatedAt: string;
 };

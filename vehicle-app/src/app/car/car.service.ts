@@ -10,7 +10,7 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getAllCars(): Observable<Car[]>{
-    return this.http.get<{cars: Car[]}>('http://localhost:3000/cars')
+    return this.http.get<{cars: Car[]}>('/api/cars')
     .pipe(map(response => response.cars));
   }
 
@@ -56,11 +56,11 @@ export class CarService {
     };
     
     console.log(payload);
-    return this.http.post<Car>('http://localhost:3000/cars', payload);
+    return this.http.post<Car>('/api/cars', payload);
   }
 
   getSingleCar(id: string): Observable<Car>{
-    return this.http.get<Car>(`http://localhost:3000/cars/${id}`);
+    return this.http.get<Car>(`/api/cars/${id}`);
   }
 
 }

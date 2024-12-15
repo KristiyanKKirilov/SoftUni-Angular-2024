@@ -1,25 +1,84 @@
 const users = require('./models/users.js');
 const cars = require('./models/cars.js');
 const brands = require('./models/brands.js');
-
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
 
 
-// Add CORS headers middleware first
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
-});
+app.use(cors({
+    origin: 'http://localhost:4200', // Specific allowed origin
+    methods: ['GET', 'POST'],       // Specific allowed methods
+    credentials: true               // For cookies or Authorization headers
+}));
 
-// Middleware to parse JSON requests
 app.use(bodyParser.json());
 
-// POST route to add a car
+app.post('/register', (req, res) => {
+    const { email, username, password, phoneNumber } = req.body;
+
+    // Check if user already exists
+    const userExists = users.some(user => user.email === email);
+    
+    if (userExists) {
+        return res.status(400).json({ message: 'Email already registered' });
+    }
+
+    // Create a new user and add to the users array
+    const newUser = {
+        _id: new Date().getTime().toString(), // Generate a unique ID (use a real DB in production)
+        email,
+        username,
+        password,  // Store password as plain text for now, consider hashing it in real apps
+        phoneNumber,
+        cars: [],  // New user starts with no cars
+    };
+
+    users.push(newUser);
+    
+    // Respond with success message
+    res.status(201).json({
+        message: 'Registration successful',
+        user: {
+            _id: newUser._id,
+            email: newUser.email,
+            username: newUser.username,
+            phoneNumber: newUser.phoneNumber,
+        },
+    });
+});
+
+// POST route for User Login
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+
+    // Find the user by email
+    const user = users.find(user => user.email === email);
+    console.log(user);
+
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Check if the password is correct
+    if (user.password !== password) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Respond with success and user info (excluding password)
+    res.status(200).json({
+        message: 'Login successful',
+        user: {
+            _id: user._id,
+            email: user.email,
+            username: user.username,
+            phoneNumber: user.phoneNumber,
+        },
+    });
+});
+
 app.post('/cars', (req, res) => {
     cars.push({
         _id: req.body._id,
@@ -46,7 +105,6 @@ app.post('/cars', (req, res) => {
     });
 });
 
-// GET route to fetch all cars
 app.get('/cars', (req, res) => {
     const enrichedCars = cars.map(car => {
         const user = users.find(user => user._id === car.userId);

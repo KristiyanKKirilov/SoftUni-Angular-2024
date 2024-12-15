@@ -13,12 +13,12 @@ export class BrandService {
 
   getAllBrands():Observable<Brand[]>{
     return this.http
-    .get<{brands: Brand[]}>('http://localhost:3000/brands')
+    .get<{brands: Brand[]}>('/api/brands')
     .pipe(map(response => response.brands));;
   }
 
   getAllCarsWithCurrentBrand(id: number):Observable<Car[]>{
-    return this.http.get<{brand: Brand, cars: Car[]}>(`http://localhost:3000/brands/${id}`)
+    return this.http.get<{brand: Brand, cars: Car[]}>(`/api/brands/${id}`)
     .pipe(map(response => response.cars));
   }
 }

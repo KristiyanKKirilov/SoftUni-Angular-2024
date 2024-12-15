@@ -30,7 +30,7 @@
                             </div>
                         </div>         
                         <div class="ctas">
-                            <a [routerLink]="car._id" class="btn primary">Details</a>
+                            <a routerLink="/cars/{{car._id}}" class="btn primary">Details</a>
                             <div style="clear:both;"></div>
                         </div>                    
                         <div class="specs">
@@ -56,7 +56,7 @@
             </div>
         }                      
     }@else {
-        <p>Loading...</p>
+       <app-loader/>
     }
     </div>    
 </div>

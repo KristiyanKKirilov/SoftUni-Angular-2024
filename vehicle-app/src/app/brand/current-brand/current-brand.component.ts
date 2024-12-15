@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { BrandService } from '../brand.service';
 import { Car } from '../../types/car';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-current-brand',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    LoaderComponent
   ],
   templateUrl: './current-brand.component.html',
   styleUrl: './current-brand.component.css'

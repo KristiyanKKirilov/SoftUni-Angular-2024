@@ -9,10 +9,10 @@ const users = [
     },
     {
         _id: "5fa64b162183ce1728ff371d",
-        email: "david@gmail.com",
-        phoneNumber: "+359885333885",
+        email: "john@gmail.com",
+        phoneNumber: "+099 331",
         password: "123123",
-        username: "David",
+        username: "John",
         cars: [], // No cars
     }
 ];
