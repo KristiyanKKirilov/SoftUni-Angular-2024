@@ -7,7 +7,7 @@ import { Car } from '../types/car';
   providedIn: 'root'
 })
 export class CarService {
-
+  maxId: number = 0;
   constructor(private http: HttpClient) { }
 
   getAllCars(): Observable<Car[]>{
@@ -33,6 +33,7 @@ export class CarService {
     const userId = "5fa64a072183ce1728ff3719";
     const [createdAt,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
     const images = [];
+    let _id = 0;
 
     images.push(firstImageUrl, secondImageUrl);
     
@@ -53,7 +54,12 @@ export class CarService {
       createdAt,
       updatedAt,
     };
+   
     return this.http.post<Car>('http://localhost:3000/cars', payload);
+  }
+
+  getSingleCar(id: string): Observable<Car>{
+    return this.http.get<Car>(`http://localhost:3000/cars/${id}`);
   }
 
 }

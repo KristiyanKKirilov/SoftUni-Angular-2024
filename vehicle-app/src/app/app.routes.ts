@@ -13,7 +13,7 @@ export const routes: Routes = [
     {path: 'brands', component: BrandsComponent},
     {path: 'cars', children: [
         {path: '', component: AllCarsComponent},
-        {path: ':carId', component: CarDetailsComponent}
+        {path: ':id', component: CarDetailsComponent}
     ]},
     {path: 'auth', component: AuthenticationComponent},
     {path: 'add-car', component: AddCarComponent},

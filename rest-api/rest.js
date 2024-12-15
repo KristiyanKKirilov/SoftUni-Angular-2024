@@ -91,4 +91,16 @@ app.get('/cars', (req, res) => {
     res.json({ cars });
 });
 
+
+app.get('/cars/:id', (req, res) => {
+    const id = req.params.id;
+    const car = cars.find(car => car._id === id);
+    console.log(car._id);
+    console.log(car.brand);
+    if (!car) {
+        return res.status(404).json({ message: 'Car not found' });
+    }
+    res.json(car);
+});
+
 module.exports = app;

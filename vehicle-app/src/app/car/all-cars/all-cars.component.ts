@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../car.service';
 import { Car } from '../../types/car';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-cars',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './all-cars.component.html',
   styleUrl: './all-cars.component.css'
 })
