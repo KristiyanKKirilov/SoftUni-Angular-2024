@@ -64,6 +64,7 @@ app.use(bodyParser.json());
 // POST route to add a car
 app.post('/cars', (req, res) => {
     cars.push({
+        _id: req.body._id,
         brand: req.body.brand,
         model: req.body.model,
         price: req.body.price,
@@ -95,8 +96,6 @@ app.get('/cars', (req, res) => {
 app.get('/cars/:id', (req, res) => {
     const id = req.params.id;
     const car = cars.find(car => car._id === id);
-    console.log(car._id);
-    console.log(car.brand);
     if (!car) {
         return res.status(404).json({ message: 'Car not found' });
     }

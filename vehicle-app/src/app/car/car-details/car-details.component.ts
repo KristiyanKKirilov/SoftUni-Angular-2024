@@ -12,6 +12,7 @@ import { CarService } from '../car.service';
 })
 export class CarDetailsComponent implements OnInit {
   car = {} as Car;
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +22,9 @@ export class CarDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
-    console.log(id);
     this.carService.getSingleCar(id).subscribe(car => {
-      console.log(car);
       this.car = car;
+      this.isLoading = false;
     });
 
   }
