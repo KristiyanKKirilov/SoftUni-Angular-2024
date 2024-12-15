@@ -35,6 +35,11 @@ export class UserService {
    
   }
   
+  register(username: string, email: string, phoneNumber: string, password: string ){
+      return this.http.post<User>('/api/register', {username, email, phoneNumber, password})
+      .pipe((tap((user) => this.user$$.next(user))));
+  }
+
   getProfile(){
     return this.http.get<User>('/api/users/profile')
     .pipe(tap((user) => this.user$$.next(user)));

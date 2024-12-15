@@ -4,6 +4,7 @@ const brands = require('./models/brands.js');
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -16,38 +17,68 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     const { email, username, password, phoneNumber } = req.body;
 
-    // Check if user already exists
+    // Validate required fields
+    if (!email || !username || !password || !phoneNumber) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    // Check if the user already exists
     const userExists = users.some(user => user.email === email);
-    
     if (userExists) {
         return res.status(400).json({ message: 'Email already registered' });
     }
 
-    // Create a new user and add to the users array
-    const newUser = {
-        _id: new Date().getTime().toString(), // Generate a unique ID (use a real DB in production)
-        email,
-        username,
-        password,  // Store password as plain text for now, consider hashing it in real apps
-        phoneNumber,
-        cars: [],  // New user starts with no cars
-    };
+    try {
+        // Hash the password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    users.push(newUser);
-    
-    // Respond with success message
-    res.status(201).json({
-        message: 'Registration successful',
-        user: {
-            _id: newUser._id,
-            email: newUser.email,
-            username: newUser.username,
-            phoneNumber: newUser.phoneNumber,
-        },
-    });
+        // Create a new user object
+        const newUser = {
+            _id: new Date().getTime().toString(), // Unique ID for this example
+            email,
+            username,
+            password: hashedPassword, // Save the hashed password
+            phoneNumber,
+            cars: [], // No cars initially
+        };
+
+        // Add the new user to the users array
+        users.push(newUser);
+
+        // Respond with user info (excluding password)
+        res.status(201).json({
+            message: 'Registration successful',
+            user: {
+                _id: newUser._id,
+                email: newUser.email,
+                username: newUser.username,
+                phoneNumber: newUser.phoneNumber,
+            },
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+app.get('/profile', (req, res) => {
+    const { _id: userId } = req.user;
+
+    userModel.findOne({ _id: userId }, { password: 0, __v: 0 }) // Exclude password and __v fields
+        .then((user) => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.status(200).json(user);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: 'Internal server error' });
+        });
 });
 
 // POST route for User Login

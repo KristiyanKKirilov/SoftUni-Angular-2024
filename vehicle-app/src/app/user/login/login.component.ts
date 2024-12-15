@@ -7,7 +7,6 @@ import { UserService } from '../user.service';
   selector: 'app-login',
   standalone: true,
   imports: [
-    RouterLink,
     ReactiveFormsModule, 
     FormsModule,
   ],

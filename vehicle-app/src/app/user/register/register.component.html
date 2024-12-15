@@ -1,8 +1,32 @@
-<form action="#">
+<form [formGroup]="form" (ngSubmit)="register()">
     <h1>Create Account</h1>
-    <input type="text" placeholder="Name" />
-    <input type="email" placeholder="Email" />
-    <input type="phone" placeholder="Phone number" />
-    <input type="password" placeholder="Password" />
+    <input
+     type="text" 
+     placeholder="Username"
+     id="username"
+     name="username"
+     formControlName="username" />
+
+    <input 
+    type="email" 
+    placeholder="Email"
+    id="email"
+    name="email"
+    formControlName="email" />
+
+    <input 
+    type="phone" 
+    placeholder="Phone number"
+    id="phoneNumber"
+    name="phoneNumber"
+    formControlName="phoneNumber" />
+
+    <input 
+    type="password" 
+    placeholder="Password"
+    id="password"
+    name="password"
+    formControlName="password" />
+
     <button>Sign Up</button>
 </form>

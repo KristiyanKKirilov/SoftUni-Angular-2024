@@ -1,12 +1,44 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, FormSubmittedEvent, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule
+  ],
   templateUrl: './register.component.html',
   styleUrl: '../authentication/authentication.component.css'
 })
 export class RegisterComponent {
+  form = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
 
+  constructor(private userService: UserService, private router: Router){}
+
+  register(): void{
+      if(this.form.invalid){
+        return;
+      }
+
+      console.log(this.form.value);
+      const {
+        username, 
+        email,
+        phoneNumber,
+        password
+      } = this.form.value; 
+
+      this.userService.register(username!, email!, phoneNumber!, password!)
+      .subscribe(() => {
+        this.router.navigate(['/cars']);
+      })
+  }
 }
