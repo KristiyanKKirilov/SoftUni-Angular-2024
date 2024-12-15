@@ -35,9 +35,10 @@ app.post('/cars', (req, res) => {
         doors: req.body.doors,
         images: req.body.images,
         userId: req.body.userId,
-        created_at: req.body.created_at,
-        updatedAt: req.body.updatedAt,
+        created_at: req.body.created_at || new Date().toISOString(), // Default to current date if missing
+        updatedAt: req.body.updatedAt || new Date().toISOString(),
     });
+
 
     res.status(200).json({
         message: 'Car post submitted'

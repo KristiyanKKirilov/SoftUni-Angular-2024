@@ -30,7 +30,7 @@ export class CarService {
     secondImageUrl: string,
   ):Observable<Car>{
     const userId = "5fa64a072183ce1728ff3719";
-    const [createdAt,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
+    const [created_at,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
     const images = [];
     const _id = userId + brand + model + year;
 
@@ -51,10 +51,11 @@ export class CarService {
       doors, 
       images, 
       userId, 
-      createdAt,
+      created_at,
       updatedAt,
     };
-    console.log(_id);
+    
+    console.log(payload);
     return this.http.post<Car>('http://localhost:3000/cars', payload);
   }
 
