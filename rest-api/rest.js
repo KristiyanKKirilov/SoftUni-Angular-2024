@@ -62,7 +62,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 // POST route to add a car
-app.post('/add-car', (req, res) => {
+app.post('/cars', (req, res) => {
     cars.push({
         brand: req.body.brand,
         model: req.body.model,

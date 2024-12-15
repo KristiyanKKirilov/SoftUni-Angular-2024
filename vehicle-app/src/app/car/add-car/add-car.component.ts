@@ -34,7 +34,6 @@ export class AddCarComponent {
       engine 
     } = form.value;
 
-      console.log(form.value);
     this.carService.createCar(
       brand,
       model,

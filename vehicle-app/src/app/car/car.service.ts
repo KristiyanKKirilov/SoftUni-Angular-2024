@@ -33,9 +33,9 @@ export class CarService {
     const userId = "5fa64a072183ce1728ff3719";
     const [createdAt,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
     const images = [];
-    console.log(firstImageUrl);
-    console.log(secondImageUrl);
+
     images.push(firstImageUrl, secondImageUrl);
+    
     const payload = {
       brand, 
       model, 
@@ -53,8 +53,7 @@ export class CarService {
       createdAt,
       updatedAt,
     };
-    console.log(payload);
-    return this.http.post<Car>('http://localhost:3000/add-car', payload);
+    return this.http.post<Car>('http://localhost:3000/cars', payload);
   }
 
 }
