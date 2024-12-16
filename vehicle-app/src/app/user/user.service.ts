@@ -20,16 +20,17 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.user$.subscribe((user) => {
       this.user = user;
+      console.log("User :");
+      console.log(user);
+      console.log(this.user);
+      console.log('yes');
     });
    }
 
    login(email: string, password: string){    
-    console.log(email);
-    console.log(password);
     return this.http
     .post<User>('/api/login', {email, password})
     .pipe((tap((user) =>{ 
-      console.log(user)
       this.user$$.next(user)
     }))); 
    
@@ -44,4 +45,9 @@ export class UserService {
     return this.http.get<User>('/api/users/profile')
     .pipe(tap((user) => this.user$$.next(user)));
   }
+
+  logout(){
+    return this.http.post('/api/logout', {})
+    .pipe(tap((user) => this.user$$.next(null))) ;
+  } 
 }

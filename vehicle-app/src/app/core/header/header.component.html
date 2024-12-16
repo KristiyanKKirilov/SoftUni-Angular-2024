@@ -22,19 +22,18 @@
         </nav>
         <div class="header-auth">
             <ul>
-                <!-- @if(isLoggedIn){ -->
+                @if(isLoggedIn){
                 <li>
-                    <!-- <a routerLink="/profile">{{firstName}}'s profile</a> -->
-                    <a href="#">Chris</a>
+                    <a routerLink="/profile">{{username}}'s profile</a>
                 </li>
                 <li>
-                    <a>Logout</a>
+                    <a (click)="logout()">Logout</a>
                 </li>
-                <!-- }@else { -->
+                }@else {
                 <li>
                     <a routerLink="/auth">SignUp</a>
                 </li>
-                <!-- } -->
+                }
             </ul>
         </div>
     </div>

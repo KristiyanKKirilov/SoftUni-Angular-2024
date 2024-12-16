@@ -4,7 +4,7 @@ const brands = require('./models/brands.js');
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const app = express();
 
@@ -33,14 +33,14 @@ app.post('/register', async (req, res) => {
 
     try {
         // Hash the password before saving
-        const hashedPassword = await bcrypt.hash(password, 10);
+        // const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a new user object
         const newUser = {
             _id: new Date().getTime().toString(), // Unique ID for this example
             email,
             username,
-            password: hashedPassword, // Save the hashed password
+            password, // Save the hashed password
             phoneNumber,
             cars: [], // No cars initially
         };
@@ -49,15 +49,7 @@ app.post('/register', async (req, res) => {
         users.push(newUser);
 
         // Respond with user info (excluding password)
-        res.status(201).json({
-            message: 'Registration successful',
-            user: {
-                _id: newUser._id,
-                email: newUser.email,
-                username: newUser.username,
-                phoneNumber: newUser.phoneNumber,
-            },
-        });
+        res.status(201).json(newUser);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal server error' });
@@ -81,6 +73,22 @@ app.get('/profile', (req, res) => {
         });
 });
 
+app.post('/logout', (req, res) => {
+    // If you're using sessions, destroy the session
+    if (req.session) {
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Failed to destroy session:', err);
+                return res.status(500).json({ message: 'Failed to log out' });
+            }
+            res.status(200).json({ message: 'Logout successful' });
+        });
+    } else {
+        // If no session is found, still respond with success
+        res.status(200).json({ message: 'Logout successful' });
+    }
+});
+
 // POST route for User Login
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -94,20 +102,33 @@ app.post('/login', (req, res) => {
     }
 
     // Check if the password is correct
+    //     bcrypt.compare(password, user.password, (err, isMatch) => {
+    //         if (err) {
+    //             return res.status(500).json({ message: 'Internal server error' });
+    //         }
+
+    //         if (!isMatch) {
+    //             return res.status(401).json({ message: 'Invalid credentials' });
+    //         }
+
+    //         // Respond with success and user info (excluding password)
+    //         res.status(200).json({
+    //             message: 'Login successful',
+    //             user: {
+    //                 _id: user._id,
+    //                 email: user.email,
+    //                 username: user.username,
+    //                 phoneNumber: user.phoneNumber,
+    //             },
+    //         });
+    //     });
+    // Check if the password is correct
     if (user.password !== password) {
         return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     // Respond with success and user info (excluding password)
-    res.status(200).json({
-        message: 'Login successful',
-        user: {
-            _id: user._id,
-            email: user.email,
-            username: user.username,
-            phoneNumber: user.phoneNumber,
-        },
-    });
+    res.status(200).json(user);
 });
 
 app.post('/cars', (req, res) => {
@@ -148,7 +169,7 @@ app.get('/cars', (req, res) => {
 });
 
 app.get('/brands', (req, res) => {
-    res.json({brands});
+    res.json({ brands });
 });
 
 app.get('/users', (req, res) => {
