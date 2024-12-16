@@ -239,4 +239,8 @@ input {
     width: 40px;
 }
 
+.error{
+    color: red;
+    font-weight: bold;
+}
 

@@ -20,12 +20,10 @@ app.use(bodyParser.json());
 app.post('/register', async (req, res) => {
     const { email, username, password, phoneNumber } = req.body;
 
-    // Validate required fields
     if (!email || !username || !password || !phoneNumber) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check if the user already exists
     const userExists = users.some(user => user.email === email);
     if (userExists) {
         return res.status(400).json({ message: 'Email already registered' });
