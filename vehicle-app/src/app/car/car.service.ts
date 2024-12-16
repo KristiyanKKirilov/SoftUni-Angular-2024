@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Car } from '../types/car';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userService: UserService) { }
 
   getAllCars(): Observable<Car[]>{
     return this.http.get<{cars: Car[]}>('/api/cars')
@@ -29,8 +30,9 @@ export class CarService {
     firstImageUrl: string,
     secondImageUrl: string,
   ):Observable<Car>{
-    const userId = "5fa64a072183ce1728ff3719";
-    const [created_at,  updatedAt] = ["2024-11-07T07:19:59.933Z", "2024-12-07T07:19:59.933Z"];
+    const userId = this.userService.user?._id;
+    const created_at = new Date().toISOString;
+    const updatedAt = new Date().toISOString;
     const images = [];
     const _id = userId + brand + model + year;
 
@@ -52,7 +54,7 @@ export class CarService {
       images, 
       userId, 
       created_at,
-      updatedAt,
+      updatedAt
     };
     
     console.log(payload);
