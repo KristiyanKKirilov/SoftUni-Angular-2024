@@ -23,7 +23,10 @@ export class LoginComponent {
       Validators.required, 
       emailValidator(this.emails)
     ]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5)
+    ])
   });
 
   constructor(private userService: UserService, private router: Router){}
