@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, FormSubmittedEvent, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { emailValidator } from '../../utils/email.validator';
+import { EMAILS } from '../../constants';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +16,17 @@ import { Router } from '@angular/router';
   styleUrl: '../authentication/authentication.component.css'
 })
 export class RegisterComponent {
+  emails: string[] = EMAILS;
+
   form = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    email: new FormControl('', [
+      Validators.required, 
+      emailValidator(this.emails)
+    ]),
     phoneNumber: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });

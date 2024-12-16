@@ -20,10 +20,6 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.user$.subscribe((user) => {
       this.user = user;
-      console.log("User :");
-      console.log(user);
-      console.log(this.user);
-      console.log('yes');
     });
    }
 

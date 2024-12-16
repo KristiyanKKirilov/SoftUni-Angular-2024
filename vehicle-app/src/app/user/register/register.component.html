@@ -28,5 +28,7 @@
     name="password"
     formControlName="password" />
 
-    <button>Sign Up</button>
+    <button
+    [disabled]="form.invalid"
+    [style]="{opacity: form.invalid ? 0.4 : 1}">Sign Up</button>
 </form>

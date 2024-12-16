@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../user.service';
+import { emailValidator } from '../../utils/email.validator';
+import { EMAILS } from '../../constants';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,13 @@ import { UserService } from '../user.service';
   styleUrl: '../authentication/authentication.component.css'
 })
 export class LoginComponent {
+  emails: string[] = EMAILS;
+  
   form = new FormGroup({
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [
+      Validators.required, 
+      emailValidator(this.emails)
+    ]),
     password: new FormControl('', [Validators.required])
   });
 
