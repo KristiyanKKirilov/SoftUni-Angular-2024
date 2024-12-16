@@ -57,6 +57,8 @@ export class CarService {
       updatedAt
     };
     
+    this.userService.user?.cars.push(_id);
+
     console.log(payload);
     return this.http.post<Car>('/api/cars', payload);
   }
@@ -64,5 +66,6 @@ export class CarService {
   getSingleCar(id: string): Observable<Car>{
     return this.http.get<Car>(`/api/cars/${id}`);
   }
+
 
 }

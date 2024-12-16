@@ -6,6 +6,6 @@ export interface User{
     phoneNumber: string;
     password: string;
     username: string;
-    cars: Car[];
+    cars: string[];
     created_at: string;
 };
