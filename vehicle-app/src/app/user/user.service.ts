@@ -42,8 +42,16 @@ export class UserService {
     .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  updateProfile(id: string, username: string, email: string, phoneNumber: string, password: string, cars: string[]){
+    const payload = {id, username, email, phoneNumber, password, cars};
+    return this.http.put<User>('/api/users/profile', payload)
+    .pipe((tap((user) => this.user$$.next(user))));
+  }
+
   logout(){
     return this.http.post('/api/logout', {})
     .pipe(tap((user) => this.user$$.next(null))) ;
   } 
+
+  
 }

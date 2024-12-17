@@ -11,7 +11,7 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:4200', // Specific allowed origin
-    methods: ['GET', 'POST'],       // Specific allowed methods
+    methods: ['GET', 'POST', 'PUT'],       // Specific allowed methods
     credentials: true               // For cookies or Authorization headers
 }));
 
@@ -58,7 +58,7 @@ app.post('/register', async (req, res) => {
 app.get('/profile', (req, res) => {
     const { _id: userId } = req.user;
 
-    userModel.findOne({ _id: userId }, { password: 0, __v: 0 }) // Exclude password and __v fields
+    users.findOne({ _id: userId }, { password: 0, __v: 0 }) // Exclude password and __v fields
         .then((user) => {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
@@ -70,6 +70,26 @@ app.get('/profile', (req, res) => {
             res.status(500).json({ message: 'Internal server error' });
         });
 });
+
+app.put('/profile', (req, res) => {
+    const { id, username, email, phoneNumber, password, cars } = req.body.payload;
+    console.log(id);
+    console.log(username);
+    console.log(phoneNumber);
+    const user = users.find(u => u._id === id);
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (username) user.username = username;
+    if (email) user.email = email;
+    if (phoneNumber) user.phoneNumber = phoneNumber;
+    if (password) user.password = password; 
+    if (Array.isArray(cars)) user.cars = cars;
+
+    return res.status(200).json(user);
+});
+
 
 app.post('/logout', (req, res) => {
     // If you're using sessions, destroy the session

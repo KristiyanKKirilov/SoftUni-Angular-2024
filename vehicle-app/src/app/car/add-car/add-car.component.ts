@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CarService } from '../car.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-add-car',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AddCarComponent {
 
-  constructor(private carService: CarService, private router: Router) { }
+  constructor(private carService: CarService, private router: Router, private userService: UserService) { }
 
   addCar(form: NgForm): void {
     if (form.invalid) {
@@ -31,7 +32,7 @@ export class AddCarComponent {
       color,
       doors,
       horsepowers,
-      engine 
+      engine
     } = form.value;
 
     this.carService.createCar(
@@ -49,7 +50,15 @@ export class AddCarComponent {
       firstImage,
       secondImage
     ).subscribe(() => {
-        this.router.navigate(['/cars']);
-      });
+      this.userService.updateProfile(
+        this.userService.user!._id,
+        this.userService.user!.username,
+        this.userService.user!.email,
+        this.userService.user!.phoneNumber,
+        this.userService.user!.password,
+        this.userService.user!.cars).subscribe(() => {
+          this.router.navigate(['/cars']);
+        });
+    });
   }
 }

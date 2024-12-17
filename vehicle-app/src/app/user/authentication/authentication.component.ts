@@ -17,11 +17,9 @@ export class AuthenticationComponent {
 
   loadSignInView():void{
     this.isActive = false;
-    console.log(this.isActive);
   }
 
   loadSignUpView():void{
     this.isActive = true;
-    console.log(this.isActive);
   }
 }

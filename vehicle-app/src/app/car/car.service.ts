@@ -57,7 +57,6 @@ export class CarService {
       updatedAt
     };
     
-    this.userService.user?.cars.push(_id);
 
     console.log(payload);
     return this.http.post<Car>('/api/cars', payload);
