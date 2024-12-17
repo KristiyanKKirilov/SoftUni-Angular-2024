@@ -4,14 +4,15 @@ const saltRounds = Number(process.env.SALTROUNDS) || 5;
 
 const { ObjectId } = mongoose.Schema.Types;
 
-const userSchema = new mongoose.Schema({
-    phoneNumber: {
-        type: String,
-    },
+const userSchema = new mongoose.Schema({    
     email: {
         type: String,
         required: true,
         unique: true,
+    },
+    phoneNumber: {
+        type: String,
+        required: true
     },
     username: {
         type: String,

@@ -1,7 +1,8 @@
 const {
-    userModel,
     tokenBlacklistModel
 } = require('../models');
+
+const userModel = require('../models/userModel.js');
 
 const utils = require('../utils');
 const { authCookieName } = require('../app-config');
@@ -10,6 +11,15 @@ const bsonToJson = (data) => { return JSON.parse(JSON.stringify(data)) };
 const removePassword = (data) => {
     const { password, __v, ...userData } = data;
     return userData
+}
+
+function getAllUsers(req, res, next){
+    userModel
+    .find()
+    .then(users => {
+        res.json(users);
+    })
+    .catch(next);
 }
 
 function register(req, res, next) {
@@ -84,13 +94,16 @@ function logout(req, res) {
         .catch(err => res.send(err));
 }
 
-function getProfileInfo(req, res, next) {
+async function getProfileInfo(req, res, next) {
     const { _id: userId } = req.user;
 
-    userModel.findOne({ _id: userId }, { password: 0, __v: 0 }) //finding by Id and returning without password and __v
-        .then(user => { res.status(200).json(user) })
+    userModel.findOne({ _id: userId }, { password: 0}) //finding by Id and returning without password and __v
+        .then(user => { 
+            res.status(200).json(user) 
+        })
         .catch(next);
 }
+
 
 function editProfileInfo(req, res, next) {
     const { _id: userId } = req.user;
@@ -107,4 +120,5 @@ module.exports = {
     logout,
     getProfileInfo,
     editProfileInfo,
+    getAllUsers
 }

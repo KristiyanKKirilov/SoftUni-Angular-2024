@@ -1,8 +1,7 @@
 const carModel = require('../models/carModel.js');
 
-function getCars(req, res, next) {
+function getAllCars(req, res, next) {
     carModel.find()
-        .populate('userId')
         .then(cars => res.json(cars))
         .catch(next);
 }
@@ -25,7 +24,7 @@ function createCar(req, res, next) {
 
     carModel.create({
         brand, model, price, year, city, kilometers,
-        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl
+        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl, userId
     })
         .then(car => {
             res.status(200).json(car)
@@ -44,8 +43,8 @@ function createCar(req, res, next) {
 // }
 
 module.exports = {
-    getCars,
     createCar,
     getCar,
+    getAllCars,
     // subscribe,
 }

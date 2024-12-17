@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const users = require('./users');
-const cars = require('./cars');
-const brands = require('./brands');
+const users = require('./users.js');
+const cars = require('./cars.js');
+const brands = require('./brands.js');
 const test = require('./test');
-const { authController } = require('../controllers');
+const  authController  = require('../controllers/auth.js');
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
