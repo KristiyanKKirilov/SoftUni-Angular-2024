@@ -28,6 +28,7 @@ export class CarDetailsComponent implements OnInit {
     this.carService.getSingleCar(id).subscribe(car => {
       this.car = car;
       this.isLoading = false;
+      console.log(car.userId);
     });
 
   }

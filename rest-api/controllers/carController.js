@@ -1,4 +1,5 @@
 const carModel = require('../models/carModel.js');
+const { populate } = require('../models/userModel.js');
 
 function getAllCars(req, res, next) {
     carModel.find()
@@ -10,7 +11,9 @@ function getCar(req, res, next) {
     const { carId } = req.params;
 
     carModel.findById(carId)
-        .then(car => {
+            .populate('userId')
+            .then(car => {
+            console.log(car.userId);
             res.json(car);
         })
         .catch(next);

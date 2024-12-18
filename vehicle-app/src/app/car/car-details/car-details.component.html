@@ -3,7 +3,7 @@
     <div class="current-car">
         <div class="car-details">
             <main class="car-image">
-                <img [src]="car.images[0]" alt="">
+                <img [src]="car.firstImageUrl" alt="">
             </main>
             <aside class="car-info">
                 <h3>{{car.brand}} {{car.model}}</h3>
@@ -16,10 +16,10 @@
                 <p>Color: {{car.color}}</p>
                 <p>Doors: {{car.doors}}</p>
             </aside>
-            <span><p class="car-owner-phone">{{car.user.phoneNumber}}</p></span>
+            <span><p class="car-owner-phone">{{car.userId.phoneNumber}}</p></span>
         </div>
         <div class="user-details">
-            <p class="center">{{car.user.username}} posted on {{car.created_at}}</p>
+            <p class="center">{{car.userId.username}} posted on {{car.created_at}}</p>
             <hr>           
         </div>
     </div>
