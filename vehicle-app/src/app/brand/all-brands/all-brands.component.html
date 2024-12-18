@@ -4,9 +4,9 @@
         @if(!isLoading){
 
         @for (brand of brands; track $index) {
-            <div class="brand-card" [routerLink]="brand.id.toString()">
+            <div class="brand-card" [routerLink]="brand._id.toString()">
                 <figure>
-                    <img [src]="brand.image" [alt]="brand.name">
+                    <img [src]="brand.imageUrl" [alt]="brand.name">
                     <figcaption>{{brand.name}}</figcaption>
                 </figure>
             </div>

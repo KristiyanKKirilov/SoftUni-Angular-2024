@@ -4,44 +4,14 @@ const saltRounds = Number(process.env.SALTROUNDS) || 5;
 
 const { ObjectId } = mongoose.Schema.Types;
 
-const userSchema = new mongoose.Schema({    
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    phoneNumber: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        minlength: [5, 'Username should be at least 5 characters'],
-        validate: {
-            validator: function (v) {
-                return /[a-zA-Z0-9]+/g.test(v);
-            },
-            message: props => `${props.value} must contains only latin letters and digits!`
-        },
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: [5, 'Password should be at least 5 characters'],
-        validate: {
-            validator: function (v) {
-                return /[a-zA-Z0-9]+/g.test(v);
-            },
-            message: props => `${props.value} must contains only latin letters and digits!`
-        },
-    },
-    cars: [{
-        type: ObjectId,
-        ref: "Car"
-    }]    
-}, { timestamps: { createdAt: 'created_at' } });
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    phoneNumber: { type: String, required: true },
+    username: { type: String, required: true, unique: true, minlength: 5 },
+    password: { type: String, required: true, minlength: 5 },
+    cars: [{ type: ObjectId, ref: "Car" }],
+}, { timestamps: true }); // Automatically handles created_at and updatedAt
+
 
 userSchema.methods = {
     matchPassword: function (password) {

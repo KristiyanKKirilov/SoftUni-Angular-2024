@@ -50,15 +50,15 @@ export class AddCarComponent {
       firstImage,
       secondImage
     ).subscribe(() => {
-      this.userService.updateProfile(
-        this.userService.user!._id,
-        this.userService.user!.username,
-        this.userService.user!.email,
-        this.userService.user!.phoneNumber,
-        this.userService.user!.password,
-        this.userService.user!.cars).subscribe(() => {
+      // this.userService.updateProfile(
+      //   this.userService.user!._id,
+      //   this.userService.user!.username,
+      //   this.userService.user!.email,
+      //   this.userService.user!.phoneNumber,
+      //   this.userService.user!.password,
+      //   this.userService.user!.cars).subscribe(() => {
           this.router.navigate(['/cars']);
-        });
+        // });
     });
   }
 }

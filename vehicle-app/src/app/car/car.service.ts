@@ -33,13 +33,8 @@ export class CarService {
     const userId = this.userService.user?._id;
     const created_at = new Date().toISOString;
     const updatedAt = new Date().toISOString;
-    const images = [];
-    const _id = userId + brand + model + year;
-
-    images.push(firstImageUrl, secondImageUrl);
     
     const payload = {
-      _id,
       brand, 
       model, 
       price,  
@@ -51,7 +46,8 @@ export class CarService {
       gearbox, 
       horsepowers,
       doors, 
-      images, 
+      firstImageUrl,
+      secondImageUrl, 
       userId, 
       created_at,
       updatedAt

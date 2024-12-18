@@ -4,8 +4,8 @@ const { auth } = require('../utils');
 const  brandController  = require('../controllers/brandController.js');
 
 // middleware that is specific to this router
-router.get('/', brandController.getAllBrands);
-router.post('/', auth(), brandController.createBrand);
+router.get('/',  brandController.getAllBrands);
+router.post('/', brandController.createBrand);
 
 router.get('/:brandId', brandController.getBrand);
 

@@ -22,6 +22,18 @@ function getAllUsers(req, res, next){
     .catch(next);
 }
 
+function getUser(req, res, next){
+    const {userId} = req.params;
+
+    userModel
+    .findById(userId)
+    .populate('cars')
+    .then(user => {
+        res.json(user);
+    })
+    .catch(next);
+}
+
 function register(req, res, next) {
     const { username, email, phoneNumber , password } = req.body;
 
@@ -120,5 +132,6 @@ module.exports = {
     logout,
     getProfileInfo,
     editProfileInfo,
-    getAllUsers
+    getAllUsers,
+    getUser
 }

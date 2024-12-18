@@ -1,4 +1,4 @@
-const { brandModel } = require('../models');
+const brandModel  = require('../models/brandModel.js');
 
 function getBrand(req, res, next) {
     const { brandId } = req.params;
