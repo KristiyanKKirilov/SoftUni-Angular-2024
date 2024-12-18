@@ -3,7 +3,7 @@ const {
 } = require('../models');
 
 const userModel = require('../models/userModel.js');
-
+const mongoose = require('mongoose');
 const utils = require('../utils');
 const { authCookieName } = require('../app-config');
 
@@ -23,9 +23,9 @@ function getAllUsers(req, res, next){
 }
 
 function register(req, res, next) {
-    const { phoneNumber, email, username, password } = req.body;
+    const { username, email, phoneNumber , password } = req.body;
 
-    return userModel.create({ phoneNumber, email, username, password })
+    return userModel.create({ username, email, phoneNumber, password })
         .then((createdUser) => {
             createdUser = bsonToJson(createdUser);
             createdUser = removePassword(createdUser);
@@ -55,7 +55,7 @@ function register(req, res, next) {
 
 function login(req, res, next) {
     const { email, password } = req.body;
-
+    console.log(email);
     userModel.findOne({ email })
         .then(user => {
             return Promise.all([user, user ? user.matchPassword(password) : false]);

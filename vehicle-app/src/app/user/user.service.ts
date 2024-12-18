@@ -33,6 +33,7 @@ export class UserService {
   }
   
   register(username: string, email: string, phoneNumber: string, password: string ){
+    console.log(username, email, phoneNumber, password);  
       return this.http.post<User>('/api/register', {username, email, phoneNumber, password})
       .pipe((tap((user) => this.user$$.next(user))));
   }
