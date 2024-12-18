@@ -2,15 +2,14 @@
     <h2 class="container-title">All cars</h2>
     <div class="wrapper">
         @if(!isLoading){
-
         @for (car of cars; track $index) {
             <div class="vehicle-card">
                 <div class="details">
                     <div class="thumb-gallery">
                         <img class="first"
-                            [src]="car.images[1]" />
+                            [src]="car.secondImageUrl" />
                         <img class="second"
-                            [src]="car.images[0]" />
+                            [src]="car.firstImageUrl" />
                     </div>
                     <div class="info">
                         <h3>{{car.brand}} {{car.model}}</h3>       

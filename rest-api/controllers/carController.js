@@ -18,13 +18,13 @@ function getCar(req, res, next) {
 
 function createCar(req, res, next) {
     const { brand, model, price, year, city, kilometers,
-        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl
+        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl, userId, created_at, updated_at
     } = req.body;
-    const { _id: userId } = req.user;
+    // const { _id: userId } = req.user;
 
     carModel.create({
         brand, model, price, year, city, kilometers,
-        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl, userId
+        engine, color, gearbox, horsepowers, doors, firstImageUrl, secondImageUrl, userId, created_at, updatedAt
     })
         .then(car => {
             res.status(200).json(car)

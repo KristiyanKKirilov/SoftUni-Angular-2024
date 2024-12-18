@@ -11,8 +11,8 @@ export class CarService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getAllCars(): Observable<Car[]>{
-    return this.http.get<{cars: Car[]}>('/api/cars')
-    .pipe(map(response => response.cars));
+    return this.http.get<Car[]>('/api/cars')
+    .pipe(map(response => response));
   }
 
   createCar( 
