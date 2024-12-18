@@ -27,6 +27,7 @@ export class CurrentBrandComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.brandService.getAllCarsWithCurrentBrand(id)
     .subscribe(cars => {
+      console.log(cars);
       this.cars = cars;
       this.isLoading = false;
     });

@@ -7,7 +7,7 @@ const  brandController  = require('../controllers/brandController.js');
 router.get('/',  brandController.getAllBrands);
 router.post('/', brandController.createBrand);
 
-router.get('/:brandId', brandController.getBrand);
+router.get('/:brandId', brandController.getAllCarsByCurrentBrand);
 
 // router.get('/my-trips/:id/reservations', auth(), themeController.getReservations);
 

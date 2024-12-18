@@ -1,4 +1,5 @@
 const brandModel  = require('../models/brandModel.js');
+const carModel = require('../models/carModel.js');
 
 function getBrand(req, res, next) {
     const { brandId } = req.params;
@@ -34,9 +35,30 @@ function getAllBrands(req, res, next) {
 //         .catch(next);
 // }
 
+function getAllCarsByCurrentBrand(req, res, next) {
+    const { brandId } = req.params;
+
+    brandModel.findById(brandId)
+        .then(brand => {
+            if (!brand) {
+                return res.status(404).json({ message: 'Brand not found' });
+            }
+
+            return carModel.find({ brand: brand.name });
+        })
+        .then(cars => {
+            res.json(cars);
+        })
+        .catch(error => {
+            // Handle errors
+            next(error);
+        });
+}
+
 module.exports = {
     getBrand,
     createBrand,
-    getAllBrands
+    getAllBrands,
+    getAllCarsByCurrentBrand
     // subscribe,
 }

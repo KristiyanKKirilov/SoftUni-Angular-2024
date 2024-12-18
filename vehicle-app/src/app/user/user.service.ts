@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { User } from '../types/user';
+import { Car } from '../types/car';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,10 @@ export class UserService {
     const payload = {id, username, email, phoneNumber, password, cars};
     return this.http.put<User>('/api/users/profile', payload)
     .pipe((tap((user) => this.user$$.next(user))));
+  }
+
+  getUserCars(id: string){
+    return this.http.get<Car[]>(`/api/users/${id}`);
   }
 
   logout(){

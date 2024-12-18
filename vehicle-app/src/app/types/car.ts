@@ -16,7 +16,7 @@ export interface Car{
         firstImageUrl: string,
         secondImageUrl: string,
         userId: User,
-        created_at: string,
+        createdAt: string,
         updatedAt: string,
         __v: number
 }

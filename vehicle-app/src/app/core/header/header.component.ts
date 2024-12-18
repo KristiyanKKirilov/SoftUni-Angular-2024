@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../user/user.service';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,11 @@ export class HeaderComponent {
     return this.userService.isLogged;
   }
 
-  get username(): string {
+  get user(): User | null {
     if (this.isLoggedIn) {
-      return this.userService.user?.username || '';
+      return this.userService.user;
     }
-    return '';
+    return null;
   }
 
   constructor(

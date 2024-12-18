@@ -36,21 +36,15 @@ export class ProfileComponent implements OnInit{
 
   constructor(private userService: UserService, private carService: CarService) { }
   ngOnInit(): void {
-    this.carIds = this.userService.user?.cars;
+    this.userService
+    .getUserCars(this.user?._id!)
+    .subscribe(cars => {
+      this.cars = cars;
+      console.log(cars);
+      this.isLoading = false;
+    })
 
-    if(this.carIds){
-      for (const car of this.carIds) {
-          this.carService.getSingleCar(car).subscribe((car) =>{
-              this.cars.push(car);
-          })
-      }
-    }
-    console.log(this.cars);
-
-    this.isLoading = false;
   }
 
-  loadCars():void{
-    console.log(this.cars);
-  }
+  
 }

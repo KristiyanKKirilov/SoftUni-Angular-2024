@@ -17,8 +17,8 @@ export class BrandService {
     .pipe(map(response => response));;
   }
 
-  getAllCarsWithCurrentBrand(id: number):Observable<Car[]>{
-    return this.http.get<{brand: Brand, cars: Car[]}>(`/api/brands/${id}`)
-    .pipe(map(response => response.cars));
+  getAllCarsWithCurrentBrand(id: string):Observable<Car[]>{
+    return this.http.get<Car[]>(`/api/brands/${id}`)
+    .pipe(map(response => response));
   }
 }

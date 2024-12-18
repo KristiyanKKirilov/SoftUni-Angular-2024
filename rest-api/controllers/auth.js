@@ -109,11 +109,24 @@ function logout(req, res) {
 async function getProfileInfo(req, res, next) {
     const { _id: userId } = req.user;
 
-    userModel.findOne({ _id: userId }, { password: 0}) //finding by Id and returning without password and __v
+    userModel.findById(userId) //finding by Id and returning without password and __v
         .then(user => { 
             res.status(200).json(user) 
         })
         .catch(next);
+}
+
+function getCarsByProfile(req, res, next){
+    const {userId} = req.params;
+
+    userModel
+    .findById(userId)
+    .populate('cars')
+    .then(user => {
+        console.log(user.cars);
+        res.json(user.cars);
+    })
+    .catch(next);
 }
 
 
@@ -133,5 +146,6 @@ module.exports = {
     getProfileInfo,
     editProfileInfo,
     getAllUsers,
-    getUser
+    getUser,
+    getCarsByProfile
 }
