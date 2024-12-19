@@ -51,7 +51,7 @@ export class UserService {
   }
 
   getUserCars(id: string){
-    return this.http.get<Car[]>(`/api/users/${id}`);
+    return this.http.get<Car[]>(`/api/users/user-car/${id}`);
   }
 
   logout(){
