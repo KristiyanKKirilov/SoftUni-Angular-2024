@@ -62,6 +62,10 @@ export class CarService {
     return this.http.get<Car>(`/api/cars/${id}`);
   }
 
+  getLatestCars():Observable<Car[]>{
+    return this.http.get<Car[]>(`/api/cars/latest/createdAt`);
+  }
+
  
 
 }

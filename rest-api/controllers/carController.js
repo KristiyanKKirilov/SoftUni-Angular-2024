@@ -2,11 +2,24 @@ const carModel = require('../models/carModel.js');
 const { populate } = require('../models/userModel.js');
 const userModel = require('../models/userModel.js');
 
+function getLatestCars(req, res, next) {
+    carModel.find()
+    .sort({createdAt: -1})
+        .limit(4)
+        .then(cars => {
+            console.log(cars);
+            res.json(cars);
+        })
+        .catch(next);
+}
+
+
 function getAllCars(req, res, next) {
     carModel.find()
         .then(cars => res.json(cars))
         .catch(next);
 }
+
 
 function getCar(req, res, next) {
     const { carId } = req.params;
@@ -45,4 +58,5 @@ module.exports = {
     createCar,
     getCar,
     getAllCars,
+    getLatestCars
 }

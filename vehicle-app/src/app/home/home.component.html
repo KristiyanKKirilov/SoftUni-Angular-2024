@@ -1,240 +1,61 @@
 <div class="container">
-    <h2 class="container-title">Most rated cars</h2>
+    <h2 class="container-title">Latest cars</h2>
     <div class="wrapper">
-        <div class="vehicle-card">
-            <div class="details">
-                <div class="thumb-gallery">
-                    <img class="first"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyFni-sl4m2n93klZlqe48fkKan7Ez657Htw&s" />
-                    <img class="second"
-                        src="https://scalethumb.leparking.fr/unsafe/331x248/smart/https://cloud.leparking.fr/2021/07/31/00/53/mercedes-clk-mercedes-benz-clk-320-v6-automatik-xenon-amg-bose-leder-tuvneu-grau_8223538407.jpg" />
-                </div>
-                <div class="info">
-                    <h3>Mercedes CLK</h3>       
-                    <div class="first-info">
-                        <div class="price">
-                            <span>Price</span>
-                            <h4>$6 000</h4>
+        @if(!isLoading){
+            @for (car of cars; track $index) {
+                <div class="vehicle-card">
+                    <div class="details">
+                        <div class="thumb-gallery">
+                            <img class="first"
+                                [src]="car.firstImageUrl" />
+                            <img class="second"
+                                [src]="car.secondImageUrl" />
                         </div>
-                        <div class="price">
-                            <span>Year</span>
-                            <h4>2000</h4>
-                        </div>
-                        <div class="price">
-                            <span>City</span>
-                            <h4>Sofia</h4>
-                        </div>
-                    </div>         
-                    <div class="ctas">
-                        <a href="#" class="btn primary">Details</a>
-                        <div style="clear:both;"></div>
-                    </div>                    
-                    <div class="specs">
-                        <div class="spec mpg">
-                            <span>Engine</span>
-                            <p>Diesel 2.2<span></span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Gearbox</span>
-                            <p>Manual</p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Horsepower</span>
-                            <p>150<span>hp</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Kilometers</span>
-                            <p>180 000</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="vehicle-card">
-            <div class="details">
-                <div class="thumb-gallery">
-                    <img class="first"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/09/2018-Mercedes-AMG-GT-GTC-116.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                    <img class="second"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/09/2018-Mercedes-AMG-GT-GTC-114.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                </div>
-                <div class="info">
-                    <h3>Mercedes-AMG GT</h3>
-                    <div class="stars" data-stars="1">
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="2">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="3">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="4">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                    </div>
-                    <div class="price">
-                        <span>Price Starting at</span>
-                        <h4>$157,995</h4>
-                    </div>
-                    <div class="ctas">
-                        <a href="#" class="btn primary">Model Details</a>
-                        <a href="#" class="btn secondary">Cars for Sale</a>
-                        <div style="clear:both;"></div>
-                    </div>
-                    <div class="desc">
-                        <p>Sporting an adaptive adjustable suspension, active aerodynamics, and trick rear-axle
-                            steering.
-                        </p>
-                    </div>
-                    <div class="specs">
-                        <div class="spec mpg">
-                            <span>EPA City/Hwy</span>
-                            <p>16/22<span>mpg</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>0-60</span>
-                            <p>3.5<span>sec</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Horsepower</span>
-                            <p>503<span>hp</span></p>
+                        <div class="info">
+                            <h3>{{car.brand}} {{car.model}}</h3>       
+                            <div class="first-info">
+                                <div class="price">
+                                    <span>Price</span>
+                                    <h4>${{car.price}}</h4>
+                                </div>
+                                <div class="price">
+                                    <span>Year</span>
+                                    <h4>{{car.year}}</h4>
+                                </div>
+                                <div class="price">
+                                    <span>City</span>
+                                    <h4>{{car.city}}</h4>
+                                </div>
+                            </div>         
+                            <div class="ctas">
+                                <a href="#" class="btn primary">Details</a>
+                                <div style="clear:both;"></div>
+                            </div>                    
+                            <div class="specs">
+                                <div class="spec mpg">
+                                    <span>Engine</span>
+                                    <p>{{car.engine}}<span></span></p>
+                                </div>
+                                <div class="spec mpg">
+                                    <span>Gearbox</span>
+                                    <p>{{car.gearbox}}</p>
+                                </div>
+                                <div class="spec mpg">
+                                    <span>Horsepower</span>
+                                    <p>{{car.horsepowers}}<span>hp</span></p>
+                                </div>
+                                <div class="spec mpg">
+                                    <span>Kilometers</span>
+                                    <p>{{car.kilometers}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="vehicle-card">
-            <div class="details">
-                <div class="thumb-gallery">
-                    <img class="first"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2016/02/2016-Lamborghini-Huracan-LP610-4-Spyder-111.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                    <img class="second"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2016/02/2016-Lamborghini-Huracan-LP610-4-Spyder-101.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                </div>
-                <div class="info">
-                    <h3>Lamborghini Huracan</h3>
-                    <div class="stars" data-stars="1">
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="2">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="3">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="4">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                    </div>
-                    <div class="price">
-                        <span>Price Starting at</span>
-                        <h4>$203,295</h4>
-                    </div>
-                    <div class="ctas">
-                        <a href="#" class="btn primary">Model Details</a>
-                        <a href="#" class="btn secondary">Cars for Sale</a>
-                        <div style="clear:both;"></div>
-                    </div>
-                    <div class="desc">
-                        <p>Nothing on Earth can prepare you for the eyeball-melting performance.</p>
-                    </div>
-                    <div class="specs">
-                        <div class="spec mpg">
-                            <span>EPA City/Hwy</span>
-                            <p>14/20<span>mpg</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>0-60</span>
-                            <p>2.5<span>sec</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Horsepower</span>
-                            <p>602<span>hp</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="vehicle-card">
-            <div class="details">
-                <div class="thumb-gallery">
-                    <img class="first"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/06/2018-Ferrari-812-Superfast-115.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                    <img class="second"
-                        src="https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/wp-content/uploads/2017/06/2018-Ferrari-812-Superfast-101.jpg?crop=1xw:1xh;center,center&resize=480:*" />
-                </div>
-                <div class="info">
-                    <h3>Ferrari 812 Superfast</h3>
-                    <div class="stars" data-stars="1">
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="2">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="3">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="4">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                        <svg height="22" width="20" class="star rating" data-rating="5">
-                            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"
-                                style="fill-rule:nonzero;" />
-                        </svg>
-                    </div>
-                    <div class="price">
-                        <span>Price Starting at</span>
-                        <h4>$315,000</h4>
-                    </div>
-                    <div class="ctas">
-                        <a href="#" class="btn primary">Model Details</a>
-                        <a href="#" class="btn secondary">Cars for Sale</a>
-                        <div style="clear:both;"></div>
-                    </div>
-                    <div class="desc">
-                        <p>With a claimed top speed of 211 mph, the name 812 Superfast is not mere hyperbole.</p>
-                    </div>
-                    <div class="specs">
-                        <div class="spec mpg">
-                            <span>EPA City/Hwy</span>
-                            <p>12/16<span>mpg</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>0-60</span>
-                            <p>2.8<span>sec</span></p>
-                        </div>
-                        <div class="spec mpg">
-                            <span>Horsepower</span>
-                            <p>789<span>hp</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            }
+        }@else {
+            <app-loader/>
+        }             
     </div>
     <div class="btn-more">
         <button>More cars</button>

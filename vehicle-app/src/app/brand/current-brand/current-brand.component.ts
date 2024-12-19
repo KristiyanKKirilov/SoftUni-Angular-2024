@@ -3,6 +3,7 @@ import { BrandService } from '../brand.service';
 import { Car } from '../../types/car';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { Brand } from '../../types/brand';
 
 @Component({
   selector: 'app-current-brand',
@@ -16,6 +17,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 })
 export class CurrentBrandComponent implements OnInit {
   cars: Car[] = [];
+  brand: Brand | null = null;
   isLoading = true;
 
   constructor(
@@ -30,7 +32,7 @@ export class CurrentBrandComponent implements OnInit {
       console.log(cars);
       this.cars = cars;
       this.isLoading = false;
-    });
+    });    
   }
 
 
