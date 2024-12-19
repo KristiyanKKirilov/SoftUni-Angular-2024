@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CarService } from '../car.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../user/user.service';
 import { BrandService } from '../../brand/brand.service';
 import { Brand } from '../../types/brand';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { NonNegativeDirective } from '../../directives/non-negative.directive';
 
 @Component({
   selector: 'app-add-car',
   standalone: true,
   imports: [
     FormsModule,
-    LoaderComponent
+    LoaderComponent,
+    NonNegativeDirective,
 ],
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.css'

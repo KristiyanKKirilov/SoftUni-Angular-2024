@@ -57,8 +57,6 @@ function createCar(req, res, next) {
 function updateCar(req, res, next) {
     const carId = req.params.carId; // Get carId from the URL
     const carData = req.body; // Updated fields are in the request body
-    console.log(carId);
-    console.log(carData);
 
     // Check if `carId` is provided
     if (!carId) {
