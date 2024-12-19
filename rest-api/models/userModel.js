@@ -7,7 +7,7 @@ const { ObjectId } = mongoose.Schema.Types;
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     phoneNumber: { type: String, required: true },
-    username: { type: String, required: true, unique: true, minlength: 5 },
+    username: { type: String, required: true, unique: true, minlength: 3 },
     password: { type: String, required: true, minlength: 5 },
     cars: [{ type: ObjectId, ref: "Car" }],
 }, { timestamps: true }); // Automatically handles created_at and updatedAt

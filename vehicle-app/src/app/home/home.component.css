@@ -59,13 +59,13 @@ ul li{
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);
 }
 
-.vehicle-card .details:hover{
+/* .vehicle-card .details:hover{
   -webkit-transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   height: 460px;
   width: 240px;
-}
+} */
 .vehicle-card .info{
   margin: 10px;
 }

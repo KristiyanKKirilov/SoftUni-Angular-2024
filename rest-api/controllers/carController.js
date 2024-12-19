@@ -53,10 +53,38 @@ function createCar(req, res, next) {
         })
         .catch(next); // Pass any errors to the error-handling middleware
 }
+function updateCar(req, res, next) {
+    const carId = req.params.carId; // Get carId from the URL
+    const carData = req.body; // Updated fields are in the request body
+    console.log(carId);
+    console.log(carData);
+
+    // Check if `carId` is provided
+    if (!carId) {
+        return res.status(400).json({ message: 'Car ID is required' });
+    }
+
+    // Validate input data (optional but recommended)
+    if (!carData) {
+        return res.status(400).json({ message: 'No data provided to update' });
+    }
+
+    // Update the car document in the database
+    carModel.findByIdAndUpdate(carId, carData, { new: true, runValidators: true })
+        .then(updatedCar => {
+            if (!updatedCar) {
+                return res.status(404).json({ message: 'Car not found' });
+            }
+
+            res.status(200).json(updatedCar); // Send back the updated car
+        })
+        .catch(next); // Pass any errors to the error-handling middleware
+}
 
 module.exports = {
     createCar,
     getCar,
     getAllCars,
-    getLatestCars
+    getLatestCars,
+    updateCar
 }

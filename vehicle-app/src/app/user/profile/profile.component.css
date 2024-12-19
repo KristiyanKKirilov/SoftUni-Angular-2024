@@ -55,7 +55,7 @@ ul li{
 
 .vehicle-card .details{
   position: absolute;
-  height: 335px;
+  height: 150px;
   width: 240px;
   overflow: hidden;
   background-color: #fff;
@@ -66,7 +66,7 @@ ul li{
   -webkit-transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all .3s cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  height: 460px;
+  height: 200px;
   width: 240px;
 }
 .vehicle-card .info{
@@ -190,20 +190,33 @@ ul li{
   line-height: 26px;
 }
 
-.btn-more{
-    padding: 1.62em 0;
+.buttons{
+  display: flex;
+}
+.buttons button{
+  padding: 0.7em 0.8em;
+  flex-grow: 1;
+  border: none;
 }
 
-.btn-more button{
-    display: block;
-    margin: 0 auto;
-    padding: 0.5em 5em;    
-    background-color: #234465;
-    color:#fff;
-    border-radius: 15px;
+.edit-btn{
+  background-color: #234465;
+  color: #fff;
 }
 
-.btn-more button:hover {
-    cursor: pointer;
-    transform: scale(1.05); 
+.edit-btn:hover{
+  background-color: #fff;
+  color: #234465;
 }
+
+.delete-btn{
+  background-color: rgb(172, 0, 0);
+  color: #fff;
+}
+
+.delete-btn:hover{
+  background-color: #fff;
+  color: rgb(172, 0, 0);
+} 
+
+

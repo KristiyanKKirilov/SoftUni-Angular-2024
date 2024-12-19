@@ -9,6 +9,7 @@ router.get('/',  carController.getAllCars);
 router.post('/', carController.createCar);
 
 router.get('/:carId', carController.getCar);
+router.put('/:carId', carController.updateCar);
 router.get('/latest/createdAt', carController.getLatestCars);
 
 // router.get('/my-trips/:id/reservations', auth(), themeController.getReservations);

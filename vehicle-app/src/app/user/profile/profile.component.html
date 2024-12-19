@@ -1,5 +1,7 @@
 <div class="container">
     <h2>{{user?.username}}'s profile</h2>
+    <div class="wrapper">
+
     @if(!isLoading){
         @for (car of cars; track $index) {
             <div class="vehicle-card">
@@ -10,12 +12,17 @@
                         <img class="second"
                             [src]="car.firstImageUrl" />
                     </div>
-                    <button class="edit-btn" routerLink="/edit/{{car._id}}">Edit</button>
-                    <button class="delete-btn">Delete</button>
+                    <div class="buttons">
+                        <button class="edit-btn" routerLink="/edit/{{car._id}}">Edit</button>
+                        <button class="delete-btn">Delete</button>  
+                    </div>
+                    
                 </div>
             </div>
         }                      
     }@else {
         <app-loader/>
     }
+</div>
+
 </div>

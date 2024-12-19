@@ -66,6 +66,42 @@ export class CarService {
     return this.http.get<Car[]>(`/api/cars/latest/createdAt`);
   }
 
+  updateCar( 
+    _id: string,
+    brand: string, 
+    model: string, 
+    price: number,  
+    year: string,
+    city: string,
+    kilometers: number, 
+    engine: string,
+    color: string, 
+    gearbox: string, 
+    horsepowers: number,
+    doors: number, 
+    firstImageUrl: string,
+    secondImageUrl: string, 
+    ):Observable<Car>{
+      const payload = {
+        _id,
+        brand, 
+        model, 
+        price,  
+        year,
+        city,
+        kilometers, 
+        engine,
+        color, 
+        gearbox, 
+        horsepowers,
+        doors, 
+        firstImageUrl,
+        secondImageUrl
+      };
+
+    return this.http.put<Car>(`/api/cars/${_id}`, payload);
+  }
+
  
 
 }
