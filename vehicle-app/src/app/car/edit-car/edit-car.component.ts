@@ -6,6 +6,8 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SlicePipe } from "../../shared/pipes/slice.pipe";
 import { ElapsedTimePipe } from "../../shared/pipes/elapsed-time.pipe";
+import { UserService } from '../../user/user.service';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-edit-car',
@@ -17,11 +19,16 @@ import { ElapsedTimePipe } from "../../shared/pipes/elapsed-time.pipe";
 export class EditCarComponent implements OnInit {
   car = {} as Car;
   isLoading = true;
-  
+
+   get user(): User | null {
+      return this.userService.user || null;
+    }
+
   constructor(
     private route: ActivatedRoute,
     private carService: CarService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
