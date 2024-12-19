@@ -1,6 +1,7 @@
 const carModel = require('../models/carModel.js');
 const { populate } = require('../models/userModel.js');
 const userModel = require('../models/userModel.js');
+const mongoose = require('mongoose');
 
 function getLatestCars(req, res, next) {
     carModel.find()
@@ -81,10 +82,39 @@ function updateCar(req, res, next) {
         .catch(next); // Pass any errors to the error-handling middleware
 }
 
+function deleteCar(req, res, next) {
+    const carId = req.params.carId; // Get carId from the URL
+
+    // Log for debugging
+    console.log('Car ID to delete:', carId);
+
+    // Check if carId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(carId)) {
+        return res.status(400).json({ message: 'Invalid Car ID' });
+    }
+
+    // Delete the car document from the database
+    carModel.findByIdAndDelete(carId)
+        .then(deletedCar => {
+            if (!deletedCar) {
+                return res.status(404).json({ message: 'Car not found' });
+            }
+
+            // Remove the car from the user's cars array
+            return userModel.updateOne(
+                { cars: carId }, // Find users that have the car in their cars array
+                { $pull: { cars: carId } } // Remove the carId from the user's cars array
+            ).then(() => {
+                res.status(200).json({ message: 'Car and association deleted successfully' });
+            });
+        })
+        .catch(next); // Pass any errors to the error-handling middleware
+}
 module.exports = {
     createCar,
     getCar,
     getAllCars,
     getLatestCars,
-    updateCar
+    updateCar,
+    deleteCar
 }

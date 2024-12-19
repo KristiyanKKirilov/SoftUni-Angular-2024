@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../../types/user';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CarService } from '../../car/car.service';
 import { Car } from '../../types/car';
 import { LoaderComponent } from '../../shared/loader/loader.component';
@@ -16,7 +16,7 @@ import { LoaderComponent } from '../../shared/loader/loader.component';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   cars: Car[] = [];
   carIds: string[] | undefined = [];
   isLoading: boolean = true;
@@ -25,26 +25,33 @@ export class ProfileComponent implements OnInit{
     return this.userService.isLogged;
   }
 
-  get user(): User | null{
+  get user(): User | null {
     return this.userService.user || null;
   }
 
-  // get cars(): Cars[] {
-// 
-    // return this.carService.getSingleCar()
-  // }
 
-  constructor(private userService: UserService, private carService: CarService) { }
+  constructor(
+    private userService: UserService,
+    private carService: CarService,
+    private router: Router) { }
   ngOnInit(): void {
     this.userService
-    .getUserCars(this.user?._id!)
-    .subscribe(cars => {
-      this.cars = cars;
-      console.log(cars);
-      this.isLoading = false;
-    })
+      .getUserCars(this.user?._id!)
+      .subscribe(cars => {
+        this.cars = cars;
+        console.log(cars);
+        this.isLoading = false;
+      })
 
   }
 
-  
+  deleteCar(_id: string): void {
+    this.carService
+      .deleteCar(_id)
+      .subscribe(() => {
+        this.router.navigate(['/profile']);
+      })
+  }
+
+
 }

@@ -14,7 +14,7 @@
                     </div>
                     <div class="buttons">
                         <button class="edit-btn" routerLink="/edit/{{car._id}}">Edit</button>
-                        <button class="delete-btn">Delete</button>  
+                        <button class="delete-btn" (click)="deleteCar(car._id)">Delete</button>  
                     </div>
                     
                 </div>

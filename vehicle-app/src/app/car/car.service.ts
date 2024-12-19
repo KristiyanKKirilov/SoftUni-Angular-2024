@@ -101,7 +101,10 @@ export class CarService {
 
     return this.http.put<Car>(`/api/cars/${_id}`, payload);
   }
-
+  
+  deleteCar(_id: string):Observable<Car>{
+    return this.http.delete<Car>(`/api/cars/${_id}`);
+  }
  
 
 }
