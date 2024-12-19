@@ -5,7 +5,9 @@
                 <main class="car-image">
                     <img [src]="car.firstImageUrl" alt="">
                     <div class="user-details">
-                        <p class="center">{{car.userId.username}} posted on {{car.createdAt}}</p>
+                        <p class="center">
+                            {{car.userId.username | slice : 15}} posted on {{car.createdAt | elapsedTime}}
+                        </p>
                         <hr>           
                     </div>
                 </main>

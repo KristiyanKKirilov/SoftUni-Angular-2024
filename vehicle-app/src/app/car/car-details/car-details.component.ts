@@ -3,13 +3,18 @@ import { Car } from '../../types/car';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../car.service';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { SlicePipe } from '../../shared/pipes/slice.pipe';
+import { ElapsedTimePipe } from "../../shared/pipes/elapsed-time.pipe";
+
 
 @Component({
   selector: 'app-car-details',
   standalone: true,
   imports: [
     LoaderComponent,
-  ],
+    SlicePipe,
+    ElapsedTimePipe
+],
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.css'
 })

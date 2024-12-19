@@ -4,11 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../car.service';
 import { LoaderComponent } from '../../shared/loader/loader.component';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SlicePipe } from "../../shared/pipes/slice.pipe";
+import { ElapsedTimePipe } from "../../shared/pipes/elapsed-time.pipe";
 
 @Component({
   selector: 'app-edit-car',
   standalone: true,
-  imports: [LoaderComponent, FormsModule],
+  imports: [LoaderComponent, FormsModule, SlicePipe, ElapsedTimePipe],
   templateUrl: './edit-car.component.html',
   styleUrl: './edit-car.component.css'
 })
