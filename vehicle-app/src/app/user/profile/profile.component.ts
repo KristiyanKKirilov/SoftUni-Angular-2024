@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
     this.carService
       .deleteCar(_id)
       .subscribe(() => {
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/cars']);
       })
   }
 

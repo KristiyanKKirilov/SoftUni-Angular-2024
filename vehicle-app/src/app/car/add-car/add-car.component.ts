@@ -1,24 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CarService } from '../car.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../user/user.service';
+import { BrandService } from '../../brand/brand.service';
+import { Brand } from '../../types/brand';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-add-car',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    LoaderComponent
+],
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.css'
 })
-export class AddCarComponent {
+export class AddCarComponent implements OnInit{
+  isLoading: boolean = true;
+  brands: Brand[] = [];
+  selectedName: string = '';
+  
+  constructor(
+    private carService: CarService, 
+    private router: Router, 
+    private brandService: BrandService) { }
 
-  constructor(private carService: CarService, private router: Router, private userService: UserService) { }
+  ngOnInit(): void {
+    this.brandService
+    .getAllBrands()
+    .subscribe((brands) => {
+      this.brands = brands;
+      this.selectedName = brands[0].name;
+      this.isLoading = false;
+    })
+  }
 
   addCar(form: NgForm): void {
     if (form.invalid) {
       return;
     }
+
+    console.log(form.value);
+    console.log(this.selectedName);
     const {
       brand,
       model,
@@ -50,15 +75,7 @@ export class AddCarComponent {
       firstImage,
       secondImage
     ).subscribe(() => {
-      // this.userService.updateProfile(
-      //   this.userService.user!._id,
-      //   this.userService.user!.username,
-      //   this.userService.user!.email,
-      //   this.userService.user!.phoneNumber,
-      //   this.userService.user!.password,
-      //   this.userService.user!.cars).subscribe(() => {
           this.router.navigate(['/cars']);
-        // });
     });
   }
 }

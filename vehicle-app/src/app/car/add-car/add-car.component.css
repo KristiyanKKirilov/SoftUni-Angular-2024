@@ -49,8 +49,10 @@
     cursor: pointer;
     transform: scale(1.05); 
 }
-.field input{
+.field input, .field select{
     border-radius: 5px;
     border: 1px solid #000;
 }
+
+
 

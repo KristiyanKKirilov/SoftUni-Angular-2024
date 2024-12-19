@@ -1,16 +1,27 @@
 <div class="container">
+    @if(!isLoading){
+
     <div class="new-car">
         <h2>New car post</h2>
         <form class="add-form" #form="ngForm" (ngSubmit)="addCar(form)">
             <div class="fields">
                 <div class="field new-car-brand">
                     <label for="brand">Brand</label>
-                    <input 
+                    <select 
+                    name="brand" 
+                    id="brand"
+                    ngModel
+                    #brand="ngModel">
+                        @for (brand of brands; track $index) {
+                            <option [value]="brand.name">{{brand.name}}</option>
+                        }
+                    </select>
+                    <!-- <input 
                     type="text" 
                     id="brand" 
                     name="brand"
                     ngModel
-                    #brand="ngModel">
+                    #brand="ngModel"> -->
                 </div>
                 <div class="field new-car-model">
                     <label for="model">Model</label>
@@ -21,6 +32,16 @@
                     ngModel 
                     #model="ngModel">
                 </div>
+                <div class="field new-car-year">
+                    <label for="year">Year</label>
+                    <input 
+                    type="text" 
+                    id="year" 
+                    name="year"
+                    ngModel
+                    #year="ngModel">
+                </div>
+               
                 <div class="field new-car-image">
                     <label for="firstImage">ImageURL 1</label>
                     <input 
@@ -48,15 +69,7 @@
                     ngModel
                     #price="ngModel">
                 </div>
-                <div class="field new-car-year">
-                    <label for="year">Year</label>
-                    <input 
-                    type="text" 
-                    id="year" 
-                    name="year"
-                    ngModel
-                    #year="ngModel">
-                </div>
+                
                 <div class="field new-car-city">
                     <label for="city">City</label>
                     <input 
@@ -124,4 +137,8 @@
             <button>Submit</button>
         </form>
     </div>
+}@else {
+    <app-loader/>
+}
+
 </div>
