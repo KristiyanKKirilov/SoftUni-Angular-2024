@@ -1,24 +1,5 @@
 # Vehicle Angular Application connected to MongoDbCompass database 
 
-# Public Part / Private Part - authorizing user
-Unauthenticated users have permission to see only the home page and the brands page
-
-# DB data models are in db folder
-# -- mongorestore command to retrive the data in MongoDbCompass
-1.Users
-2.Cars
-3.Brands
-
-# 404 Error Handled 
-Redirecting to error page on unavailable requests
-
-# Interfaces
-Interfaces for User, Car and Brand
-
-# Home page
--Showing the last 4 car posts created
--Option to see all cars if user is authenticated
-
 # Home page
 ![Screenshot_1](https://github.com/user-attachments/assets/31768d16-829d-44d2-a345-b3a3bbdf8115)
 
@@ -43,6 +24,24 @@ Interfaces for User, Car and Brand
 # Hover on current car ad
 ![Screenshot_8](https://github.com/user-attachments/assets/72091763-92e1-464b-b68b-6249958e2e15)
 
+# Public Part / Private Part - authorizing user
+Unauthenticated users have permission to see only the home page and the brands page
+
+# DB data models are in db folder
+# -- mongorestore command to retrive the data in MongoDbCompass
+1.Users
+2.Cars
+3.Brands
+
+# 404 Error Handled 
+Redirecting to error page on unavailable requests
+
+# Interfaces
+Interfaces for User, Car and Brand
+
+# Home page
+-Showing the last 4 car posts created
+-Option to see all cars if user is authenticated
 
 
 
