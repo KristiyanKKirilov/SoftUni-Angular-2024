@@ -15,6 +15,9 @@
 # All cars page
 ![Screenshot_5](https://github.com/user-attachments/assets/712d3981-3171-446a-bc32-c6a2b82655fd)
 
+# All cars by brand page
+![AllCarsByBrand](https://github.com/user-attachments/assets/db50510c-3e2e-4f76-ae93-ecbacd1bcf5c)
+
 # Car details page
 ![Screenshot_6](https://github.com/user-attachments/assets/c765b7b5-c1d8-4e73-b596-9cc4e298677f)
 
